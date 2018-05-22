@@ -3,3 +3,35 @@
 <% else %>
   <h2>No Products</h2>
 <% end %>
+<script type="text/javascript">
+  $(function {
+    $("js-more").on("click", function(){
+      const button = $(this);
+      const id = button.data("id");
+      const state = button.data("toggle-state");
+      if (state === "closed") {
+        $.get(`/products/${id}/description`, (fullDescripton) => {
+          $(`#prod-${id}-description`).innerHTML = fullDescripton;
+        });
+        $.get(`/products/${id}/inventory`, (inventory) => {
+          $(`#prod-${id}-inventory`).css("display","block");
+          if inventory === "true" {
+            $(`#prod-${id}-inventory`).innerHTML = "Available";
+          }
+          else {
+            $(`#prod-${id}-inventory`).innerHTML = "Sold Out";
+          }
+        });
+        button.data("toggle-state", "open");
+      }
+      else {
+        $.get(`/products/${id}/description`, (truncatedDescripton) => {
+          $(`#prod-${id}-description`).innerHTML = truncatedDescripton;
+        });
+        $(`#prod-${id}-inventory`).css("display","none");
+        $(`#prod-${id}-inventory`).innerHTML = "";
+        button.data("toggle-state", "closed");
+      }
+    });
+  })
+</script>
