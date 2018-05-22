@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
 
   def create
     Product.create(name: params[:name], description: params[:description], inventory: params[:inventory], price: params[:price])
-    redirect_to "index"
+    redirect_to products_path
   end
 
 end
