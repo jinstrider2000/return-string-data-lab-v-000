@@ -8,4 +8,17 @@ class ProductsController < ApplicationController
     prod = Product.find_by(id: params[:id])
     render :plain, prod.inventory
   end
+
+  def index
+    @products = Product.all
+  end
+
+  def new
+    
+  end
+
+  def create
+    
+  end
+  
 end
