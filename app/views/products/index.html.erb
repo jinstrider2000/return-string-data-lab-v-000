@@ -10,26 +10,26 @@
       const id = button.data("id");
       const state = button.data("toggle-state");
       if (state === "closed") {
-        $.get(`/products/${id}/description`, (fullDescripton) => {
-          $(`#prod-${id}-description`).innerHTML = fullDescripton;
+        $.get(`/products/${id}/description`, function (data){
+          $(`#prod-${id}-description`)[0].innerHTML = data;
         });
-        $.get(`/products/${id}/inventory`, (inventory) => {
+        $.get(`/products/${id}/inventory`, function (data){
           $(`#prod-${id}-inventory`).css("display","block");
-          if (inventory === "true") {
-            $(`#prod-${id}-inventory`).innerHTML = "Available";
+          if (data === "true") {
+            $(`#prod-${id}-inventory`)[0].innerHTML = "Available";
           }
           else {
-            $(`#prod-${id}-inventory`).innerHTML = "Sold Out";
+            $(`#prod-${id}-inventory`)[0].innerHTML = "Sold Out";
           }
         });
         button.data("toggle-state", "open");
       }
       else {
-        $.get(`/products/${id}/description`, (truncatedDescripton) => {
-          $(`#prod-${id}-description`).innerHTML = truncatedDescripton;
+        $.get(`/products/${id}/truncated-description`, function(truncatedDescripton) {
+          $(`#prod-${id}-description`)[0].innerHTML = truncatedDescripton;
         });
         $(`#prod-${id}-inventory`).css("display","none");
-        $(`#prod-${id}-inventory`).innerHTML = "";
+        $(`#prod-${id}-inventory`)[0].innerHTML = "";
         button.data("toggle-state", "closed");
       }
     });

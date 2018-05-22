@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def truncated_description
     prod = Product.find_by(id: params[:id])
-    render plain: truncate(prod.description)
+    render plain: prod.description.truncate(30)
   end
 
   def inventory
