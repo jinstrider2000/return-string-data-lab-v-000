@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def inventory
     prod = Product.find_by(id: params[:id])
-    render :plain, prod.inventory
+    render :plain, prod.inventory_available?
   end
 
   def index
@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    
+
   end
 
 end
