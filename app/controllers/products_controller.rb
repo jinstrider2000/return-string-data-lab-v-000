@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-
+    Product.create(name: params[:name], description: params[:description], inventory: params[:inventory], price: params[:price])
   end
 
 end
