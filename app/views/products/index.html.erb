@@ -15,7 +15,7 @@
         });
         $.get(`/products/${id}/inventory`, (inventory) => {
           $(`#prod-${id}-inventory`).css("display","block");
-          if inventory === "true" {
+          if (inventory === "true") {
             $(`#prod-${id}-inventory`).innerHTML = "Available";
           }
           else {
