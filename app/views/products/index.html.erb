@@ -1,1 +1,5 @@
-
+<% if @products.count > 0 %>
+  <%= render @products %>
+<% else %>
+  <h2>No Products</h2>
+<% end %>
