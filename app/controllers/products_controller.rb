@@ -4,6 +4,11 @@ class ProductsController < ApplicationController
     render plain: prod.description
   end
 
+  def truncated_description
+    prod = Product.find_by(id: params[:id])
+    render plain: truncate(prod.description)
+  end
+
   def inventory
     prod = Product.find_by(id: params[:id])
     render plain: prod.inventory_available?
