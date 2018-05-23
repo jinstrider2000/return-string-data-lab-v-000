@@ -2,5 +2,5 @@
   <h2><%=product.name%></h2>
   <p id="prod-<%=product.id%>-description"><%=truncate product.description%></p>
   <p id="prod-<%=product.id%>-inventory" style="display:none;"></p>
-  <input type="button" class="js-more" data-id="<%=product.id%>" data-toggle-state="closed" value="More Info">
+  <button class="js-more" data-id="<%=product.id%>" data-toggle-state="closed">More Info</button>
 </div>

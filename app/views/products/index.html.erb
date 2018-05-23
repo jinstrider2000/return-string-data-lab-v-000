@@ -11,26 +11,28 @@
       const state = button.data("toggle-state");
       if (state === "closed") {
         $.get(`/products/${id}/description`, function (data){
-          $(`#prod-${id}-description`)[0].innerHTML = data;
+          $(`#prod-${id}-description`).html(data);
         });
         $.get(`/products/${id}/inventory`, function (data){
           $(`#prod-${id}-inventory`).css("display","block");
           if (data === "true") {
-            $(`#prod-${id}-inventory`)[0].innerHTML = "Available";
+            $(`#prod-${id}-inventory`).html("Available");
           }
           else {
-            $(`#prod-${id}-inventory`)[0].innerHTML = "Sold Out";
+            $(`#prod-${id}-inventory`).html("Sold Out");
           }
         });
         button.data("toggle-state", "open");
+        button.html("Less Info");
       }
       else {
-        $.get(`/products/${id}/truncated-description`, function(truncatedDescripton) {
-          $(`#prod-${id}-description`)[0].innerHTML = truncatedDescripton;
+        $.get(`/products/${id}/truncated-description`, function(truncatedDescription) {
+          $(`#prod-${id}-description`).html(truncatedDescription);
         });
         $(`#prod-${id}-inventory`).css("display","none");
-        $(`#prod-${id}-inventory`)[0].innerHTML = "";
+        $(`#prod-${id}-inventory`).html("");
         button.data("toggle-state", "closed");
+        button.html("More Info");
       }
     });
   });
